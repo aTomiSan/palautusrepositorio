@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 flask = "^3.0.3"
 pytest = "^8.3.3"
+cowsay = "^6.1"
 
 
 [build-system]
