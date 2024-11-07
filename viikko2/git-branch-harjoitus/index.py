@@ -1,10 +1,10 @@
-# tehdään alussa importit
+#tehdään alussa importit
 
 from logger import logger
 from summa import summa
 from erotus import erotus
 
-logger("aloitetaan")
+logger("aloitetaan ohjelma")
 
 x = int(input("luku 1: "))
 y = int(input("luku 2: "))
