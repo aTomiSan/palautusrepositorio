@@ -3,6 +3,7 @@
 from logger import logger
 from summa import summa
 from erotus import erotus
+from tulo import tulo
 
 logger("aloitetaan ohjelma")
 
