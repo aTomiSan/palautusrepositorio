@@ -17,25 +17,15 @@ Login With Incorrect Password
     Submit Credentials
     Login Should Fail With Message  Invalid username or password
 
-*** Keywords ***
-Login Should Succeed
-    Main Page Should Be Open
+Login With Nonexistent Username
+    Set Username  palle
+    Set Password  palle123
+    Submit Credentials
+    Login Should Fail With Message  Invalid username or password
 
-Login Should Fail With Message
-    [Arguments]  ${message}
-    Login Page Should Be Open
-    Page Should Contain  ${message}
 
-Submit Credentials
-    Click Button  Login
-
-Set Username
-    [Arguments]  ${username}
-    Input Text  username  ${username}
-
-Set Password
-    [Arguments]  ${password}
-    Input Password  password  ${password}
+# *** Keywords ***
+# Keywords moved to resource.robot
 
 *** Keywords ***
 Reset Application Create User And Go To Login Page
