@@ -42,5 +42,24 @@ class UserService:
 
         # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
 
+        if len(username) < 3:  
+            raise UserInputError("Invalid username: minimum of 3 a-z characters")
+        
+        for sign in username: 
+            if sign not in "abcdefghijklmnopqrstuvwxyz":
+                raise UserInputError("Invalid username: only a-z characters")
+
+
+        if len(password) < 8:                      
+            raise UserInputError("Invalid password: minimum length 8")
+        
+        if password != password_confirmation:
+            raise UserInputError("Invalid password: passwords do not match")
+
+        for sign in password: 
+            if sign not in "abcdefghijklmnopqrstuvwxyz":
+                return
+        raise UserInputError("Invalid password: not only characters")
+        
 
 user_service = UserService()
