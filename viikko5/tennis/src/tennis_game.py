@@ -1,55 +1,46 @@
 class TennisGame:
     def __init__(self, player1_name, player2_name):
-        self.player1_name = player1_name
-        self.player2_name = player2_name
-        self.m_score1 = 0
-        self.m_score2 = 0
+        self.player1 = player1_name
+        self.player2 = player2_name
+        self.player1_score = 0
+        self.player2_score = 0
 
     def won_point(self, player_name):
-        if player_name == "player1":
-            self.m_score1 = self.m_score1 + 1
+        if player_name == self.player1:
+            self.player1_score += 1
         else:
-            self.m_score2 = self.m_score2 + 1
+            self.player2_score += 1
 
     def get_score(self):
-        score = ""
-        temp_score = 0
-
-        if self.m_score1 == self.m_score2:
-            if self.m_score1 == 0:
-                score = "Love-All"
-            elif self.m_score1 == 1:
-                score = "Fifteen-All"
-            elif self.m_score1 == 2:
-                score = "Thirty-All"
-            else:
-                score = "Deuce"
-        elif self.m_score1 >= 4 or self.m_score2 >= 4:
-            minus_result = self.m_score1 - self. m_score2
-
-            if minus_result == 1:
-                score = "Advantage player1"
-            elif minus_result == -1:
-                score = "Advantage player2"
-            elif minus_result >= 2:
-                score = "Win for player1"
-            else:
-                score = "Win for player2"
+        if self.player1_score == self.player2_score:
+            return self.draw() 
+        elif self.player1_score >= 4 or self.player2_score >= 4:
+            return self.advantage()
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.m_score1
-                else:
-                    score = score + "-"
-                    temp_score = self.m_score2
+            return f"{self.score_in_text(self.player1_score)}-{self.score_in_text(self.player2_score)}"
 
-                if temp_score == 0:
-                    score = score + "Love"
-                elif temp_score == 1:
-                    score = score + "Fifteen"
-                elif temp_score == 2:
-                    score = score + "Thirty"
-                elif temp_score == 3:
-                    score = score + "Forty"
+    def draw(self): 
+        if self.player1_score > 2:
+            return "Deuce"
+        return f"{self.score_in_text(self.player1_score)}-All"
 
-        return score
+    def advantage(self): 
+        advantage = self.player1_score - self.player2_score
+        if advantage == 1:
+            return f"Advantage {self.player1}" 
+        elif advantage == -1:
+            return f"Advantage {self.player2}" 
+        elif advantage >= 2:
+            return f"Win for {self.player1}"
+        else:
+            return f"Win for {self.player2}"
+
+    def score_in_text(self, score): 
+        if score == 0:
+            return "Love"
+        elif score == 1:
+            return "Fifteen"
+        elif score == 2:
+            return "Thirty"
+        elif score == 3:
+            return "Forty"
